@@ -1,14 +1,21 @@
 import { apiKey, baseUrl } from "./apiKeyAndHost.js";
 import { cityInput } from "../../components/inputForm.js";
 import { showError } from "../../components/error.js";
+import { isCyrillic } from "../helpers/checkCyrillic.js";
 
 //
 export async function getGeoData() {
   const city = cityInput.value.trim().toLowerCase();
+
   if (!city) {
+    return;
+  }
+  if (!isCyrillic(city)) {
     showError("Введите город");
     return;
   }
+
+  // city = 
 
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
@@ -21,7 +28,7 @@ export async function getGeoData() {
     const geoResponse = await fetch(`${geoUrl}?${queryParams.toString()}`);
     const geoData = await geoResponse.json();
     if (!geoData.length) {
-      throw new Error("Ошибка: Город не найден!");
+      throw new Error("Город не найден!");
     }
 
     const { lat, lon } = geoData[0];
@@ -29,6 +36,6 @@ export async function getGeoData() {
     console.log(lat, lon);
   } catch (error) {
     console.error(error.message);
-    showError("Ошибка в получении данных");
+    showError("Город не найден!");
   }
 }
