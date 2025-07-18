@@ -1,10 +1,12 @@
 import { apiKey, baseUrl } from "./apiKeyAndHost.js";
 import { cityInput } from "../../components/inputForm.js";
+import { showError } from "../../components/error.js";
 
 //
 export async function getGeoData() {
   const city = cityInput.value.trim().toLowerCase();
   if (!city) {
+    showError("Введите город");
     return;
   }
 
@@ -27,5 +29,6 @@ export async function getGeoData() {
     console.log(lat, lon);
   } catch (error) {
     console.error(error.message);
+    showError("Ошибка в получении данных");
   }
 }
