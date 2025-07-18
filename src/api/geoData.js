@@ -2,10 +2,11 @@ import { apiKey, baseUrl } from "./apiKeyAndHost.js";
 import { cityInput } from "../../components/inputForm.js";
 import { showError } from "../../components/error.js";
 import { isCyrillic } from "../helpers/checkCyrillic.js";
+import { cityCorrect } from "../helpers/cityCorrect.js";
 
 //
 export async function getGeoData() {
-  const city = cityInput.value.trim().toLowerCase();
+  let city = cityInput.value.trim().toLowerCase();
 
   if (!city) {
     return;
@@ -15,7 +16,9 @@ export async function getGeoData() {
     return;
   }
 
-  // city = 
+  city = cityCorrect(city)
+  console.log(city);
+  
 
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
