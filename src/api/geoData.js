@@ -3,6 +3,7 @@ import { cityInput } from "../../components/inputForm.js";
 import { showError } from "../../components/error.js";
 import { isCyrillic } from "../helpers/checkCyrillic.js";
 import { cityCorrect } from "../helpers/cityCorrect.js";
+import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js";
 
 //
 export async function getGeoData() {
@@ -16,9 +17,8 @@ export async function getGeoData() {
     return;
   }
 
-  city = cityCorrect(city)
-  console.log(city);
-  
+  city = cityCorrect(city);
+  // console.log(city);
 
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
@@ -35,8 +35,9 @@ export async function getGeoData() {
     }
 
     const { lat, lon } = geoData[0];
+    // console.log(lat, lon);
 
-    console.log(lat, lon);
+    saveCityToLocalStorage(city);
   } catch (error) {
     console.error(error.message);
     showError("Город не найден!");
