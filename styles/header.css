@@ -104,10 +104,10 @@ label {
 
 /* Всплывающее меню */
 .recent-cities {
+  display: none;
   position: absolute;
   top: 45px;
   text-align: left;
-  display: none;
   background-color: var(--background-color);
   border: 1px solid var(--input-border);
   border-radius: 6px;
