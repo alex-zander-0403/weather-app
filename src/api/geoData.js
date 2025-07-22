@@ -4,6 +4,7 @@ import { showError } from "../../components/error.js";
 import { isCyrillic } from "../helpers/checkCyrillic.js";
 import { cityCorrect } from "../helpers/cityCorrect.js";
 import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js";
+import { getWeather, getForecast } from "./getWeatherAndForecast.js";
 
 //
 export async function getGeoData() {
@@ -38,6 +39,12 @@ export async function getGeoData() {
     // console.log(lat, lon);
 
     saveCityToLocalStorage(city);
+
+    const weatherData = await getWeather(lat, lon);
+    const forecastData = await getForecast(lat, lon);
+
+    console.log(weatherData);
+    console.log(forecastData);
   } catch (error) {
     console.error(error.message);
     showError("Город не найден!");
