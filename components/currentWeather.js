@@ -1,4 +1,5 @@
-import { windDirection } from "../src/helpers/windDirection.js";
+import { windDirection } from "../src/helpers/windDirectionIndicator.js";
+import { humidityIndicator } from "../src/helpers/humidityIndicator.js";
 
 const currentCity = document.querySelector(".city");
 const currentTemperature = document.querySelector(".temperature");
@@ -38,17 +39,10 @@ export function renderCurrentWeather(data, city) {
   }
 
   currentHumidity.textContent = `${data.main?.humidity || 0}%`;
+  const humidity = data.main?.humidity;
+  humidityIndicator(humidity);
 
   currentPressure.textContent = `${Math.round(
     (data.main?.pressure || 0) * 0.750062
   )}мм`;
-
-  //
-  //   console.log(currentCity);
-  //   console.log(currentTemperature);
-  //   console.log(currenteFeelsLike);
-  //   console.log(currenteDescription);
-  //   console.log(currentWeatherIcon);
-  //   console.log(currentWind);
-  console.log(currentHumidity);
 }
