@@ -1,5 +1,7 @@
 import { windDirection } from "../src/helpers/windDirectionIndicator.js";
 import { humidityIndicator } from "../src/helpers/humidityIndicator.js";
+import { windDirection } from "../src/helpers/windDirection.js";
+import { formatTime } from "../src/helpers/formatTime.js";
 
 const currentCity = document.querySelector(".city");
 const currentTemperature = document.querySelector(".temperature");
@@ -13,6 +15,8 @@ const currentHumidity = document.querySelector(".humidity");
 const currentPressure = document.querySelector(".pressure");
 
 const dayLenght = document.querySelector(".day-length");
+const sunriseItem = document.querySelector(".sunrise");
+const sunsetItem = document.querySelector(".sunset");
 
 //
 export function renderCurrentWeather(data, city) {
@@ -32,14 +36,12 @@ export function renderCurrentWeather(data, city) {
   currentWind.textContent = `${Math.round(data.wind?.speed || 0)} м/с`;
   const currentWindDeg = data.wind?.deg || 0;
   windDirection(currentWindDeg);
-
   const visibility = data.visibility || 0;
   if (visibility >= 1000) {
     currentVisibility.textContent = `${visibility / 1000} км`;
   } else {
     currentVisibility.textContent = `${visibility} м`;
   }
-
   currentHumidity.textContent = `${data.main?.humidity || 0}%`;
   const humidity = data.main?.humidity;
   humidityIndicator(humidity);
@@ -47,4 +49,13 @@ export function renderCurrentWeather(data, city) {
   currentPressure.textContent = `${Math.round(
     (data.main?.pressure || 0) * 0.750062
   )}мм`;
+  currentPressure.textContent = `${Math.round(
+    (data.main?.pressure || 0) * 0.750062
+  )}мм`;
+
+  //
+  const { sunrise, sunset } = data.sys || {};
+  const { timezone } = data || {};
+  sunriseItem.textContent = sunrise ? formatTime(sunrise, timezone) : "н/д";
+  sunsetItem.textContent = sunset ? formatTime(sunset, timezone) : "н/д";
 }
