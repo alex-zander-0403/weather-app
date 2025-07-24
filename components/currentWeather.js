@@ -1,6 +1,5 @@
 import { windDirection } from "../src/helpers/windDirectionIndicator.js";
 import { humidityIndicator } from "../src/helpers/humidityIndicator.js";
-import { windDirection } from "../src/helpers/windDirection.js";
 import { formatTime } from "../src/helpers/formatTime.js";
 
 const currentCity = document.querySelector(".city");
