@@ -11,6 +11,8 @@ const currentVisibility = document.querySelector(".visibility");
 const currentHumidity = document.querySelector(".humidity");
 const currentPressure = document.querySelector(".pressure");
 
+const dayLenght = document.querySelector(".day-length");
+
 //
 export function renderCurrentWeather(data, city) {
   console.log("weatherData --->", data);
@@ -43,12 +45,5 @@ export function renderCurrentWeather(data, city) {
     (data.main?.pressure || 0) * 0.750062
   )}мм`;
 
-  //
-  //   console.log(currentCity);
-  //   console.log(currentTemperature);
-  //   console.log(currenteFeelsLike);
-  //   console.log(currenteDescription);
-  //   console.log(currentWeatherIcon);
-  //   console.log(currentWind);
-  console.log(currentHumidity);
+  //   dayLenght.textContent = `День длится: ${}`
 }
