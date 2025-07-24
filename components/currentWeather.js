@@ -1,4 +1,5 @@
 import { windDirection } from "../src/helpers/windDirection.js";
+import { formatTime } from "../src/helpers/formatTime.js";
 
 const currentCity = document.querySelector(".city");
 const currentTemperature = document.querySelector(".temperature");
@@ -10,6 +11,9 @@ const currentWind = document.querySelector(".wind");
 const currentVisibility = document.querySelector(".visibility");
 const currentHumidity = document.querySelector(".humidity");
 const currentPressure = document.querySelector(".pressure");
+
+const sunriseItem = document.querySelector(".sunrise");
+const sunsetItem = document.querySelector(".sunset");
 
 //
 export function renderCurrentWeather(data, city) {
@@ -29,26 +33,20 @@ export function renderCurrentWeather(data, city) {
   currentWind.textContent = `${Math.round(data.wind?.speed || 0)} м/с`;
   const currentWindDeg = data.wind?.deg || 0;
   windDirection(currentWindDeg);
-
   const visibility = data.visibility || 0;
   if (visibility >= 1000) {
     currentVisibility.textContent = `${visibility / 1000} км`;
   } else {
     currentVisibility.textContent = `${visibility} м`;
   }
-
   currentHumidity.textContent = `${data.main?.humidity || 0}%`;
-
   currentPressure.textContent = `${Math.round(
     (data.main?.pressure || 0) * 0.750062
   )}мм`;
 
   //
-  //   console.log(currentCity);
-  //   console.log(currentTemperature);
-  //   console.log(currenteFeelsLike);
-  //   console.log(currenteDescription);
-  //   console.log(currentWeatherIcon);
-  //   console.log(currentWind);
-  console.log(currentHumidity);
+  const { sunrise, sunset } = data.sys || {};
+  const { timezone } = data || {};
+  sunriseItem.textContent = sunrise ? formatTime(sunrise, timezone) : "н/д";
+  sunsetItem.textContent = sunset ? formatTime(sunset, timezone) : "н/д";
 }
