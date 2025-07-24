@@ -27,8 +27,8 @@ export function renderCurrentWeather(data, city) {
 
   //
   currentWind.textContent = `${Math.round(data.wind?.speed || 0)} м/с`;
-  //   const currentWindDeg = data.wind?.deg || 0;
-  //   windDirection(currentWindDeg);
+  const currentWindDeg = data.wind?.deg || 0;
+  windDirection(currentWindDeg);
 
   const visibility = data.visibility || 0;
   if (visibility >= 1000) {
