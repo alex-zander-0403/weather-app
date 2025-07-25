@@ -2,6 +2,10 @@ import { windDirection } from "../src/helpers/windDirectionIndicator.js";
 import { humidityIndicator } from "../src/helpers/humidityIndicator.js";
 import { formatTime } from "../src/helpers/formatTime.js";
 import { calcDayLenght } from "../src/helpers/calcDayLength.js";
+import {
+  calcSunPosition,
+  updateSunPosition,
+} from "../src/helpers/calcSunPosition.js";
 
 //
 const currentCity = document.querySelector(".city");
@@ -63,4 +67,10 @@ export function renderCurrentWeather(data, city) {
   dayLenght.textContent = `Длинна светового дня: ${
     sunrise && sunset ? calcDayLenght(sunrise, sunset) : "н/д"
   }`;
+
+  const sunPosition = sunrise && sunset ? calcSunPosition(sunrise, sunset) : 0;
+
+  console.log(sunPosition);
+
+  updateSunPosition(sunPosition);
 }
