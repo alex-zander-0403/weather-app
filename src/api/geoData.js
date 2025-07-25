@@ -6,6 +6,7 @@ import { cityCorrect } from "../helpers/cityCorrect.js";
 import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js";
 import { getWeather, getForecast } from "./getWeatherAndForecast.js";
 import { renderCurrentWeather } from "../../components/currentWeather.js";
+import { renderHourlyForecast } from "../../components/hourlyForecast.js";
 
 //
 export async function getGeoData() {
@@ -48,6 +49,7 @@ export async function getGeoData() {
     // console.log("forecastData --->", forecastData);
 
     renderCurrentWeather(weatherData, city);
+    renderHourlyForecast(forecastData);
   } catch (error) {
     console.error(error.message);
     showError("Город не найден!");

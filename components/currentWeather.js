@@ -25,7 +25,7 @@ const sunsetItem = document.querySelector(".sunset");
 
 //
 export function renderCurrentWeather(data, city) {
-  console.log("weatherData --->", data);
+  // console.log("weatherData --->", data);
 
   //
   currentCity.textContent = city || "неизвестно";
