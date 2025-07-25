@@ -1,7 +1,9 @@
 import { windDirection } from "../src/helpers/windDirectionIndicator.js";
 import { humidityIndicator } from "../src/helpers/humidityIndicator.js";
 import { formatTime } from "../src/helpers/formatTime.js";
+import { calcDayLenght } from "../src/helpers/calcDayLength.js";
 
+//
 const currentCity = document.querySelector(".city");
 const currentTemperature = document.querySelector(".temperature");
 const currenteFeelsLike = document.querySelector(".feels");
@@ -57,4 +59,8 @@ export function renderCurrentWeather(data, city) {
   const { timezone } = data || {};
   sunriseItem.textContent = sunrise ? formatTime(sunrise, timezone) : "н/д";
   sunsetItem.textContent = sunset ? formatTime(sunset, timezone) : "н/д";
+
+  dayLenght.textContent = `Длинна светового дня: ${
+    sunrise && sunset ? calcDayLenght(sunrise, sunset) : "н/д"
+  }`;
 }
