@@ -67,10 +67,7 @@ export function renderCurrentWeather(data, city) {
   dayLenght.textContent = `Длинна светового дня: ${
     sunrise && sunset ? calcDayLenght(sunrise, sunset) : "н/д"
   }`;
-
+  
   const sunPosition = sunrise && sunset ? calcSunPosition(sunrise, sunset) : 0;
-
-  console.log(sunPosition);
-
   updateSunPosition(sunPosition);
 }
