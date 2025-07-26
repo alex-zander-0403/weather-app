@@ -22,7 +22,6 @@ export async function getGeoData() {
   }
 
   city = cityCorrect(city);
-  // console.log(city);
 
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
@@ -39,15 +38,11 @@ export async function getGeoData() {
     }
 
     const { lat, lon } = geoData[0];
-    // console.log(lat, lon);
-
+    
     saveCityToLocalStorage(city);
 
     const weatherData = await getWeather(lat, lon);
     const forecastData = await getForecast(lat, lon);
-
-    // console.log("weatherData --->", weatherData);
-    // console.log("forecastData --->", forecastData);
 
     renderCurrentWeather(weatherData, city);
     renderHourlyForecast(forecastData);
