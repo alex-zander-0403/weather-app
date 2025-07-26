@@ -3,6 +3,7 @@ import { getGeoData } from "./src/api/geoData.js";
 import { getWeatherByForm } from "./components/inputForm.js";
 import { renderCurrentTime } from "./src/helpers/currentTime.js";
 import { geoLocation } from "./components/geolocation.js";
+import { scrollToTop } from "./components/scrollToTop.js";
 
 export function initApp() {
   switchTheme();
@@ -10,4 +11,5 @@ export function initApp() {
   getWeatherByForm();
   renderCurrentTime();
   geoLocation();
+  scrollToTop();
 }
