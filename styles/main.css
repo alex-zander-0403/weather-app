@@ -42,6 +42,11 @@ main {
   margin-bottom: 30px;
   border-radius: 20px;
   transition: background-color 1s ease;
+  /*  */
+  background: transparent;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--background-color);
 }
 
 /* Дополнительные стили*/

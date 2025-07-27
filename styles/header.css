@@ -94,12 +94,21 @@ label {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 1s ease, color 1s ease;
+  /* transition: background-color 1s ease, color 1s ease; */
+  transition: all 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: var(--bg-btn-hover);
   transition: background-color 1s ease;
+  /*  */
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.search-button:active {
+  background-color: var(--bg-btn-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Всплывающее меню */
